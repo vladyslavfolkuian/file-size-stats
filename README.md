@@ -1,10 +1,3 @@
-
-## Description:
-
-- **Title**: `getDirectorySize()`
-- **Summary**: This Node.js program calculates the total size of `.webp` and `.json` and `.mp3` files within a specified directory. It outputs detailed information in a JSON file, including individual file sizes, formatted sizes, and the total size.
-- **Author**: vladyslavfolkuian
-
 ## Installation
 
 Ensure you have Node.js installed. Clone the repository and navigate to the project directory.
@@ -47,3 +40,8 @@ Running node index.js myFolder will generate a JSON file folder-files-size.json 
   "totalSizeInBytes": 3572
 }
 ```
+## Description:
+
+- **Title**: `getDirectorySize()`
+- **Summary**: This Node.js program calculates the total size of `.webp` and `.json` and `.mp3` files within a specified directory. It outputs detailed information in a JSON file, including individual file sizes, formatted sizes, and the total size.
+- **Author**: vladyslavfolkuian
