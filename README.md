@@ -1,12 +1,8 @@
 
-### Description:
+## Description:
 
 - **Title**: `getDirectorySize()`
 - **Summary**: This Node.js program calculates the total size of `.webp` and `.json` files within a specified directory. It outputs detailed information in a JSON file, including individual file sizes, formatted sizes, and the total size.
-- **Installation**: Provides instructions on cloning the repository, navigating to the project directory, and installing dependencies using `npm install`.
-- **Usage**: Explains how to run the program using `node index.js [folder-name]`, where `[folder-name]` should be replaced with the target directory name.
-- **Example**: Demonstrates the expected directory structure, command execution, and the resulting JSON output format.
-- **Author**: [https://github.com/vladyslavfolkuian]
 
 ## Installation
 
