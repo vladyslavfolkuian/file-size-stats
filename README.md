@@ -6,7 +6,7 @@
 - **Installation**: Provides instructions on cloning the repository, navigating to the project directory, and installing dependencies using `npm install`.
 - **Usage**: Explains how to run the program using `node index.js [folder-name]`, where `[folder-name]` should be replaced with the target directory name.
 - **Example**: Demonstrates the expected directory structure, command execution, and the resulting JSON output format.
-- **Author**: `[vladyslavfolkuian]``
+- **Author**: [https://github.com/vladyslavfolkuian]
 
 ## Installation
 
