@@ -98,7 +98,9 @@ const processAnimationsFolder = async (dir) => {
         };
       }
 
-      console.log(`Analyzing folder: ${subDirPath}`);
+      const relativeFullDirPass = path.relative(process.cwd(), subDirPath);
+
+      console.log(`Analyzing folder: ${relativeFullDirPass}`);
     }
   }
 
@@ -193,9 +195,11 @@ const getAssetsSizes = async (dir) => {
       results.staticMedia.totalSize = formatFileSize(staticMediaSize);
       results.staticMedia.totalSizeInBytes = staticMediaSize;
 
-      console.log(`Analyzing folder: ${fullPath}`);
+      const relativeFullDirPass = path.relative(process.cwd(), fullPath);
+
+      console.log(`Analyzing folder: ${relativeFullDirPass}`);
     } catch (error) {
-      console.error(`Error processing folder '${fullPath}':`, error.message);
+      console.error(`Error processing folder '${relativeFullDirPass}':`, error.message);
     }
   }
 
