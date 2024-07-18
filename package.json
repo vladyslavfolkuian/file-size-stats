@@ -2,9 +2,9 @@
   "name": "file-size-stats",
   "version": "1.0.8",
   "description": "This Node.js program calculates the total size of .webp and .json and .mp3 files within a specified directory. It outputs detailed information in a JSON file, including individual file sizes, formatted sizes, and the total size.",
-  "main": "src/index.js",
+  "main": "src/getAssetsSizes.js",
   "scripts": {
-    "analyze": "node src/index.js assets",
+    "getAssetsSizes": "node src/getAssetsSizes.js assets",
     "release": "standard-version",
     "postrelease": "git push --follow-tags && npm publish"
   },
@@ -25,6 +25,6 @@
     "standard-version": "^9.5.0"
   },
   "dependencies": {
-    "bytes": "^3.1.2"
+    "minimist": "^1.2.8"
   }
 }

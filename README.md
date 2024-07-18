@@ -14,7 +14,7 @@ Install dependencies:
 
 ```code
 "scripts": {
-    "getFileSizeStats": "node $(find ./ -path '*/file-size-stats/src/index.js')"
+    "getFileSizeStats": "node $(find ./ -path '*/file-size-stats/src/getAssetsSizes.js')"
   },
 ```
 
