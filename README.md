@@ -2,20 +2,22 @@
 
 Ensure you have Node.js installed. Clone the repository and navigate to the project directory.
 
-git clone https://github.com/vladyslavfolkuian/size.git
+```git clone https://github.com/vladyslavfolkuian/size.git```
 
 Install dependencies:
 
-npm install
+```npm install```
 
 ## Usage
 Run the program using Node.js with the following command:
-node index.js [folder-name]
-Replace [folder-name] with the directory you want to analyze.
+
+```node index.js [folder-name]```
+
+Replace ```[folder-name]``` with the directory you want to analyze.
 
 ## Example
 
-Running node index.js myFolder will generate a JSON file folder-files-size.json with content similar to:
+Running ```node index.js [folder-name]``` will generate a JSON file ```[folder-name]-size.json``` with content similar to:
 
 ```json
 {
