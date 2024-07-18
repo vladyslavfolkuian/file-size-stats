@@ -11,7 +11,7 @@
     "url": "git+https://github.com/vladyslavfolkuian/size.git"
   },
   "keywords": [
-    "getDirectorySize()"
+    "file-size-stats"
   ],
   "author": "vladyslavfolkuian",
   "license": "ISC",
