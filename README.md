@@ -6,7 +6,11 @@ Install dependencies:
 ```npm i file-size-stats```
 
 
-Add to script ``getFileSizeStats`` in the ``package.json``
+## Usage
+
+1. Create a ``json`` folder in the root of your project where all the ``.json`` files you have created will be stored
+
+2. Add to script ``getFileSizeStats`` in the ``package.json``:
 
 ```code
 "scripts": {
@@ -14,9 +18,7 @@ Add to script ``getFileSizeStats`` in the ``package.json``
   },
 ```
 
-## Usage
-
-```npm run getFileSizeStats [folder-name]```
+3. Run the script ```npm run getFileSizeStats [folder-name]```
 
 Replace ```[folder-name]``` with the directory you want to analyze.
 
