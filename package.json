@@ -21,9 +21,6 @@
     "url": "https://github.com/vladyslavfolkuian/size/issues"
   },
   "homepage": "https://github.com/vladyslavfolkuian/size#readme",
-  "dependencies": {
-    "file-size-stats": "^1.0.0"
-  },
   "devDependencies": {
     "standard-version": "^9.5.0"
   }
