@@ -4,17 +4,21 @@ const { getFileSize, formatFileSize } = require('./utils');
 
 const getFilesRecursively = async (dir, filter = () => true) => {
   let results = [];
-  const list = await fs.readdir(dir, { withFileTypes: true });
+  try {
+    const list = await fs.readdir(dir, { withFileTypes: true });
 
-  for (const dirent of list) {
-    const fullPath = path.join(dir, dirent.name);
+    for (const dirent of list) {
+      const fullPath = path.join(dir, dirent.name);
 
-    if (dirent.isDirectory()) {
-      results = results.concat(await getFilesRecursively(fullPath, filter));
-    } else if (filter(fullPath)) {
-      const size = await getFileSize(fullPath);
-      results.push({ name: path.basename(fullPath), size: formatFileSize(size), sizeInBytes: size });
+      if (dirent.isDirectory()) {
+        results = results.concat(await getFilesRecursively(fullPath, filter));
+      } else if (filter(fullPath)) {
+        const size = await getFileSize(fullPath);
+        results.push({ name: path.basename(fullPath), size: formatFileSize(size), sizeInBytes: size });
+      }
     }
+  } catch (error) {
+    console.error(`Error reading directory '${dir}':`, error.message);
   }
   return results;
 };
@@ -46,19 +50,28 @@ const processDirectory = async (dir) => {
   for (const subDir of subDirs) {
     const fullPath = path.join(dir, subDir);
 
-    if (subDir === 'exported') {
-      results[subDir] = await processExportedFolder(fullPath);
-    } else {
-      const files = await getFilesRecursively(fullPath);
-      const totalSize = files.reduce((acc, file) => acc + file.sizeInBytes, 0);
-      results[subDir] = {
-        files,
-        totalSize: formatFileSize(totalSize),
-        totalSizeInBytes: totalSize
-      };
+    if (!(await fs.stat(fullPath).catch(() => false))) {
+      console.warn(`Skipping missing directory: ${fullPath}`);
+      continue;
     }
 
-    console.log(`Analyzing folder: ${fullPath}`);
+    try {
+      if (subDir === 'exported') {
+        results[subDir] = await processExportedFolder(fullPath);
+      } else {
+        const files = await getFilesRecursively(fullPath);
+        const totalSize = files.reduce((acc, file) => acc + file.sizeInBytes, 0);
+        results[subDir] = {
+          files,
+          totalSize: formatFileSize(totalSize),
+          totalSizeInBytes: totalSize
+        };
+      }
+
+      console.log(`Analyzing folder: ${fullPath}`);
+    } catch (error) {
+      console.error(`Error processing folder '${fullPath}':`, error.message);
+    }
   }
 
   return results;

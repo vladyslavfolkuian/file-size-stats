@@ -2,12 +2,15 @@ const fs = require('fs').promises;
 const bytes = require('bytes');
 
 const getFileSize = async (filePath) => {
-  const stats = await fs.stat(filePath);
-  return stats.size;
+  try {
+    const stats = await fs.stat(filePath);
+    return stats.size;
+  } catch (error) {
+    console.error(`Error getting file size for '${filePath}':`, error.message);
+    return 0;
+  }
 };
 
-function formatFileSize(size) {
-  return bytes(size);
-}
+const formatFileSize = (size) => bytes(size);
 
 module.exports = { getFileSize, formatFileSize };
