@@ -26,7 +26,7 @@ function processDirectory(directory) {
     totalSizeInBytes: totalSize,
   };
 
-  const outputFileName = `json/${path.basename(directory)}-files-stats.json`;
+  const outputFileName = `json/${path.basename(directory)}-stats.json`;
   try {
     fs.writeFileSync(outputFileName, JSON.stringify(output, null, 2));
     console.log(`Output written to ${outputFileName}`);
