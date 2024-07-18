@@ -1,23 +1,27 @@
 ## Installation
 
-Ensure you have Node.js installed. Clone the repository and navigate to the project directory.
-
-```git clone https://github.com/vladyslavfolkuian/size.git```
-
 Install dependencies:
 
-```npm install```
+```npm i file-size-stats```
+
+Add to script ``getFileSizeStats`` in the ``package.json``
+
+```code
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "getFileSizeStats": "node $(find ./ -path '*/file-size-stats/src/index.js')"
+  },
+```
 
 ## Usage
-Run the program using Node.js with the following command:
 
-```node index.js [folder-name]```
+```npm run getFileSizeStats [folder-name]```
 
 Replace ```[folder-name]``` with the directory you want to analyze.
 
 ## Example
 
-Running ```node index.js [folder-name]``` will generate a JSON file ```[folder-name]-size.json``` with content similar to:
+Running ```npm run getFileSizeStats [folder-name]``` will generate a JSON file ```[folder-name]-stats.json``` with content similar to:
 
 ```json
 {
@@ -42,8 +46,4 @@ Running ```node index.js [folder-name]``` will generate a JSON file ```[folder-n
   "totalSizeInBytes": 3572
 }
 ```
-## Description:
-
-- **Title**: `getDirectorySize()`
-- **Summary**: This Node.js program calculates the total size of `.webp` and `.json` and `.mp3` files within a specified directory. It outputs detailed information in a JSON file, including individual file sizes, formatted sizes, and the total size.
-- **Author**: vladyslavfolkuian
+**Author**: vladyslavfolkuian
