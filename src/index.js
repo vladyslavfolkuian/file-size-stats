@@ -1,9 +1,13 @@
-const { processDirectory } = require('./processDirectory');
+const path = require('path');
+const processDirectory = require('./processDirectory');
 
-function main() {
-  const directories = process.argv.slice(2);
+const main = async () => {
+  const baseDir = process.argv[2] || 'assets';
+  const fullPath = path.resolve(__dirname, '..', baseDir);
+  console.log(`Processing directory: '${fullPath}'...`);
 
-  directories.forEach(processDirectory);
-}
+  const results = await processDirectory(fullPath);
+  console.log('Analysis results:', JSON.stringify(results, null, 2));
+};
 
 main();

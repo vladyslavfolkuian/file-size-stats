@@ -4,7 +4,7 @@
   "description": "This Node.js program calculates the total size of .webp and .json and .mp3 files within a specified directory. It outputs detailed information in a JSON file, including individual file sizes, formatted sizes, and the total size.",
   "main": "src/index.js",
   "scripts": {
-    "size": "node src/index.js [folder name]",
+    "analyze": "node src/index.js assets",
     "release": "standard-version",
     "postrelease": "git push --follow-tags && npm publish"
   },
@@ -23,5 +23,8 @@
   "homepage": "https://github.com/vladyslavfolkuian/size#readme",
   "devDependencies": {
     "standard-version": "^9.5.0"
+  },
+  "dependencies": {
+    "bytes": "^3.1.2"
   }
 }
