@@ -23,6 +23,35 @@ const getFilesRecursively = async (dir, filter = () => true) => {
   return results;
 };
 
+const processAnimationsFolder = async (dir) => {
+  const subDirs = await fs.readdir(dir, { withFileTypes: true });
+  const results = {};
+
+  for (const subDir of subDirs) {
+    if (subDir.isDirectory()) {
+      const subDirPath = path.join(dir, subDir.name);
+      const files = await getFilesRecursively(subDirPath);
+      const totalSize = files.reduce((acc, file) => acc + file.sizeInBytes, 0);
+
+      results[subDir.name] = {
+        // files,
+        totalSize: formatFileSize(totalSize),
+        totalSizeInBytes: totalSize
+      };
+
+      console.log(`Analyzing folder: ${subDirPath}`);
+    }
+  }
+
+  const totalSize = Object.values(results).reduce((acc, subDir) => acc + subDir.totalSizeInBytes, 0);
+
+  return {
+    subFolders: results,
+    totalSize: formatFileSize(totalSize),
+    totalSizeInBytes: totalSize
+  };
+};
+
 const processExportedFolder = async (dir) => {
   const gamePath = path.join(dir, 'game');
   const gameMobilePath = path.join(dir, 'gameMobile');
@@ -37,7 +66,7 @@ const processExportedFolder = async (dir) => {
   const gameMobileTotalSize = gameMobileFiles.reduce((acc, file) => acc + file.sizeInBytes, 0);
 
   return {
-    files: [...gameFiles, ...gameMobileFiles],
+    // files: [...gameFiles, ...gameMobileFiles],
     totalSize: formatFileSize(gameTotalSize + gameMobileTotalSize),
     totalSizeInBytes: gameTotalSize + gameMobileTotalSize,
   };
@@ -56,13 +85,15 @@ const processDirectory = async (dir) => {
     }
 
     try {
-      if (subDir === 'exported') {
+      if (subDir === 'animations') {
+        results[subDir] = await processAnimationsFolder(fullPath);
+      } else if (subDir === 'exported') {
         results[subDir] = await processExportedFolder(fullPath);
       } else {
         const files = await getFilesRecursively(fullPath);
         const totalSize = files.reduce((acc, file) => acc + file.sizeInBytes, 0);
         results[subDir] = {
-          files,
+          // files,
           totalSize: formatFileSize(totalSize),
           totalSizeInBytes: totalSize
         };
